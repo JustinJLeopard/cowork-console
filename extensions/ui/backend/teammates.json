@@ -1,0 +1,42 @@
+[
+  {
+    "id": "lem",
+    "name": "Lem",
+    "role": "Always-on delegator and local operator",
+    "signature_color": "#20c997",
+    "state": "working",
+    "current_action": "Synthesizing teammate bus activity"
+  },
+  {
+    "id": "iain",
+    "name": "Iain",
+    "role": "Peer-human cloud orchestrator",
+    "signature_color": "#339af0",
+    "state": "idle-available",
+    "current_action": "Monitoring strategic alignment"
+  },
+  {
+    "id": "codex",
+    "name": "Codex",
+    "role": "Ephemeral worker pool",
+    "signature_color": "#f03e3e",
+    "state": "working",
+    "current_action": "Implementing A1.9 teammate grid API"
+  },
+  {
+    "id": "claude-code",
+    "name": "claude-code",
+    "role": "Local CLI research agent",
+    "signature_color": "#ae3ec9",
+    "state": "asleep",
+    "current_action": "Pending session activation"
+  },
+  {
+    "id": "justin",
+    "name": "Justin",
+    "role": "Peer-principal and human operator",
+    "signature_color": "#fab005",
+    "state": "idle-available",
+    "current_action": "Reviewing proposed UI plan"
+  }
+]
