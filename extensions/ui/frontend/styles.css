@@ -1,0 +1,798 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #111318;
+}
+
+.header {
+  border-bottom: 1px solid #2a2d35;
+  background: #171a21;
+}
+
+.header.dayjobHeader {
+  border-bottom-color: #0ca678;
+  background: #12201e;
+}
+
+.main {
+  height: calc(100vh - 58px);
+  background: #111318;
+  transition: padding 160ms ease;
+}
+
+.main.withActivity {
+  padding-right: 320px;
+}
+
+.main.withSessions {
+  padding-left: 300px;
+}
+
+.console {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  height: calc(100vh - 90px);
+  max-width: 1120px;
+  margin: 0 auto;
+  border: 1px solid #2a2d35;
+  background: #151820;
+}
+
+.archiveSummary {
+  border-bottom: 1px solid #2a2d35;
+  padding: 10px 12px;
+  background: #1a1d25;
+}
+
+.messages {
+  min-height: 0;
+}
+
+.composer {
+  border-top: 1px solid #2a2d35;
+  padding: 12px;
+  background: #171a21;
+}
+
+.dayjobConsole {
+  border-color: #0ca678;
+  background: #121b1c;
+}
+
+.dayjobComposer {
+  border-top-color: #0ca678;
+  background: #14211f;
+}
+
+.dayjobStatus {
+  border: 1px solid #24433f;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #101817;
+}
+
+.dayjobEmptyState {
+  max-width: 620px;
+  border: 1px solid #24433f;
+  border-radius: 8px;
+  padding: 12px;
+  background: #101817;
+}
+
+.dashboardPanel {
+  max-width: 1120px;
+  height: calc(100vh - 90px);
+  margin: 0 auto;
+  overflow: auto;
+  border: 1px solid #2a2d35;
+  padding: 14px;
+  background: #151820;
+}
+
+.liveInboxPanel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  max-width: 1120px;
+  height: calc(100vh - 90px);
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid #2a2d35;
+  padding: 14px;
+  background: #151820;
+}
+
+.liveInboxList {
+  min-height: 0;
+}
+
+.liveInboxRow {
+  border: 1px solid #2a2d35;
+  border-radius: 8px;
+  padding: 10px;
+  background: #1d212a;
+}
+
+.liveInboxSummary {
+  margin-top: 8px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.liveInboxBody {
+  max-height: 220px;
+  margin: 8px 0 0;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  border: 1px solid #2a2d35;
+  border-radius: 6px;
+  padding: 8px;
+  color: #d9fff5;
+  background: #0b0f12;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+}
+
+.teammateDemoRoute {
+  min-height: 100vh;
+  padding: 24px;
+  background: #111318;
+}
+
+.teammateDemo {
+  max-width: 1120px;
+  height: calc(100vh - 90px);
+  margin: 0 auto;
+  overflow: auto;
+  border: 1px solid #2a2d35;
+  padding: 14px;
+  background: #151820;
+}
+
+.teammateDemoRoute .teammateDemo {
+  height: auto;
+  min-height: 420px;
+}
+
+.teammateDemoHeader {
+  min-height: 42px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #2a2d35;
+  padding-bottom: 12px;
+}
+
+.teammateKicker {
+  color: #8a909c;
+  font-weight: 700;
+}
+
+.teammateTitle {
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+.teammateGrid {
+  align-items: stretch;
+}
+
+.teammateCell {
+  --signature: #f5f5f5;
+  display: grid;
+  grid-template-rows: auto minmax(132px, 1fr) auto;
+  min-height: 242px;
+  border: 1px solid #30343d;
+  border-left: 3px solid var(--signature);
+  padding: 10px;
+  color: #e7e9ee;
+  background: #191c23;
+}
+
+.teammateCellTop,
+.teammateMeta {
+  min-width: 0;
+}
+
+.teammateInitials {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #4a4f5a;
+  border-radius: 999px;
+  color: #f3f4f6;
+  font-size: 12px;
+  font-weight: 800;
+  background: #101218;
+}
+
+.teammateStateBadge {
+  flex: 0 0 auto;
+  max-width: none;
+  color: #dfe2e8;
+  border-color: #555b66;
+  background: transparent;
+}
+
+.teammateStateBadge .mantine-Badge-label {
+  overflow: visible;
+  text-overflow: clip;
+  font-size: 10px;
+}
+
+.teammateCellBody {
+  display: grid;
+  align-content: start;
+  gap: 3px;
+  margin-top: 12px;
+  min-width: 0;
+}
+
+.teammateName,
+.teammateRole,
+.teammateAction {
+  overflow-wrap: anywhere;
+}
+
+.teammateName {
+  font-size: 16px;
+  line-height: 1.15;
+}
+
+.teammateRole {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.teammateAction {
+  margin-top: 10px;
+  line-height: 1.35;
+}
+
+.teammateMeta {
+  border-top: 1px solid #2a2d35;
+  padding-top: 9px;
+}
+
+.teammateSignature {
+  width: 28px;
+  height: 3px;
+  background: var(--signature);
+}
+
+.pulse-rail,
+.pulse-rail-active {
+  animation: pulse-rail-border var(--duration, 1.8s) ease-in-out infinite;
+}
+
+.pulse-rail .teammateSignature,
+.pulse-rail-active {
+  animation: pulse-rail-opacity var(--duration, 1.8s) ease-in-out infinite;
+}
+
+@keyframes pulse-rail-border {
+  0% { border-left-color: var(--signature); }
+  50% { border-left-color: color-mix(in srgb, var(--signature), transparent 40%); }
+  100% { border-left-color: var(--signature); }
+}
+
+@keyframes pulse-rail-opacity {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-rail,
+  .pulse-rail-active,
+  .pulse-rail .teammateSignature {
+    animation: none !important;
+  }
+}
+
+.state-working {
+  border-color: #727985;
+  background: #1f2229;
+}
+
+.state-working .teammateStateBadge {
+  color: #ffffff;
+  border-color: #d7dbe2;
+}
+
+.state-idle-available {
+  background: #181b21;
+}
+
+.state-idle-available .teammateInitials {
+  border-color: #c7ccd4;
+}
+
+.state-asleep {
+  color: #a7adb8;
+  border-color: #262a31;
+  border-left-color: #50545d;
+  background: #14171d;
+}
+
+.state-asleep .teammateInitials,
+.state-asleep .teammateStateBadge,
+.state-asleep .teammateSignature {
+  opacity: 0.58;
+}
+
+.state-blocked-on-human {
+  border-color: #8e9299;
+  border-left-width: 6px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06), transparent 42%),
+    #1b1d23;
+}
+
+.state-blocked-on-human .teammateStateBadge {
+  border-color: #e8eaf0;
+}
+
+.state-blocked-on-agent {
+  border-style: dashed;
+  background: #171a20;
+}
+
+.state-blocked-on-agent .teammateStateBadge {
+  border-style: dashed;
+}
+
+.state-errored {
+  color: #0f1115;
+  border-color: #f2f3f5;
+  background: #f2f3f5;
+}
+
+.state-errored .teammateInitials,
+.state-errored .teammateStateBadge {
+  color: #0f1115;
+  border-color: #0f1115;
+  background: transparent;
+}
+
+.state-errored .teammateMeta {
+  border-top-color: #0f1115;
+}
+
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.dashboardCard {
+  min-height: 168px;
+  border: 1px solid #2a2d35;
+  border-radius: 8px;
+  padding: 12px;
+  background: #1d212a;
+}
+
+.dashboardBig {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.sparkline {
+  display: grid;
+  grid-template-columns: repeat(24, minmax(2px, 1fr));
+  align-items: end;
+  height: 42px;
+  gap: 2px;
+  margin: 8px 0;
+}
+
+.sparkline span {
+  min-height: 3px;
+  border-radius: 2px;
+  background: #4dabf7;
+}
+
+.donut {
+  width: 56px;
+  height: 56px;
+  margin: 8px 0;
+  border-radius: 50%;
+  background: conic-gradient(#0ca678 var(--p), #2a2d35 0);
+}
+
+.clipText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cloudConfirm {
+  border: 1px solid #2f5b68;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #101a20;
+}
+
+.cloudLogRow {
+  border: 1px solid #2a2d35;
+  border-radius: 6px;
+  padding: 8px;
+  background: #151820;
+}
+
+.ingestionsPanel {
+  border: 1px solid #24433f;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #101817;
+}
+
+.ingestionRow {
+  border: 1px solid #24433f;
+  border-radius: 6px;
+  padding: 8px;
+  background: #172321;
+}
+
+.ingestionTitle {
+  min-width: 0;
+}
+
+.pastePreview {
+  border: 1px solid #24433f;
+  border-radius: 8px;
+  padding: 10px;
+  background: #101817;
+}
+
+.imageDropZone {
+  border: 1px dashed #2f6f67;
+  border-radius: 8px;
+  padding: 10px;
+  background: #101817;
+}
+
+.imageDropZone:focus {
+  outline: 2px solid #0ca678;
+  outline-offset: 2px;
+}
+
+.imagePreviewRow {
+  margin-top: 10px;
+}
+
+.imagePreviewThumb {
+  width: 72px;
+  height: 54px;
+  object-fit: cover;
+  border: 1px solid #24433f;
+  border-radius: 6px;
+  background: #0e1414;
+}
+
+.imagePreviewMeta {
+  min-width: 0;
+  flex: 1;
+}
+
+.imageIngestProgress {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.chunkLabel {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.previewText {
+  max-height: 260px;
+  margin: 10px 0 0;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  border: 1px solid #24433f;
+  border-radius: 6px;
+  padding: 8px;
+  color: #d9fff5;
+  background: #0e1414;
+}
+
+.commandBlock {
+  border: 1px solid #24433f;
+  border-radius: 8px;
+  padding: 10px;
+  background: #101817;
+}
+
+.commandCode,
+.commandOutputPreview pre {
+  max-height: 260px;
+  margin: 8px 0;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  border: 1px solid #2a2d35;
+  border-radius: 6px;
+  padding: 8px;
+  color: #d9fff5;
+  background: #0b0f12;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+}
+
+.commandOutputPreview {
+  border-top: 1px solid #24433f;
+  margin-top: 8px;
+  padding-top: 8px;
+}
+
+.commandHistoryPanel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-height: 0;
+}
+
+.commandHistoryList {
+  min-height: 0;
+}
+
+.commandHistoryRow {
+  width: 100%;
+  border: 1px solid #24433f;
+  border-radius: 8px;
+  padding: 8px;
+  color: inherit;
+  text-align: left;
+  background: #172321;
+  cursor: pointer;
+}
+
+.commandHistoryText {
+  margin-top: 6px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.storageGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.storageCell {
+  min-width: 0;
+  border: 1px solid #24433f;
+  border-radius: 6px;
+  padding: 6px 8px;
+  background: #172321;
+  overflow-wrap: anywhere;
+}
+
+.bubble {
+  width: min(76%, 760px);
+  border: 1px solid #2a2d35;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #1d212a;
+}
+
+.bubble.mine {
+  align-self: flex-end;
+  background: #172238;
+}
+
+.bubble.theirs {
+  align-self: flex-start;
+  background: #16251f;
+}
+
+.messageText {
+  margin-top: 8px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.relayBadge {
+  cursor: pointer;
+  border: 0;
+}
+
+.engagementBadge {
+  cursor: pointer;
+  border: 0;
+  height: 28px;
+}
+
+.guarded {
+  max-width: 820px;
+  margin: 28px auto;
+  padding: 18px 0;
+}
+
+.setting {
+  border-bottom: 1px solid #2a2d35;
+  padding-bottom: 10px;
+  overflow-wrap: anywhere;
+}
+
+.activityPanel {
+  position: fixed;
+  top: 58px;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  border-left: 1px solid #2a2d35;
+  background: #171a21;
+  transition: width 160ms ease;
+}
+
+.sessionsPanel {
+  position: fixed;
+  top: 58px;
+  left: 0;
+  bottom: 0;
+  z-index: 20;
+  border-right: 1px solid #2a2d35;
+  background: #171a21;
+  transition: width 160ms ease;
+}
+
+.sessionsPanel.open {
+  width: 300px;
+}
+
+.sessionsPanel.closed {
+  width: 0;
+  border-right: 0;
+}
+
+.sessionsToggle {
+  position: absolute;
+  top: 12px;
+  right: -38px;
+  width: 34px;
+  height: 34px;
+}
+
+.sessionsBody {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 100%;
+  min-width: 0;
+}
+
+.sessionsHeader {
+  min-height: 52px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #2a2d35;
+}
+
+.sessionsList {
+  min-height: 0;
+}
+
+.sessionRow {
+  width: 100%;
+  border: 1px solid #2a2d35;
+  border-radius: 8px;
+  padding: 8px;
+  color: inherit;
+  text-align: left;
+  background: #1d212a;
+  cursor: pointer;
+}
+
+.sessionRow.selected {
+  border-color: #4dabf7;
+  background: #172238;
+}
+
+.sessionLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.activityPanel.open {
+  width: 320px;
+}
+
+.activityPanel.closed {
+  width: 0;
+  border-left: 0;
+}
+
+.activityToggle {
+  position: absolute;
+  top: 12px;
+  left: -38px;
+  width: 34px;
+  height: 34px;
+}
+
+.activityBody {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  height: 100%;
+  min-width: 0;
+}
+
+.activityHeader {
+  height: 44px;
+  padding: 0 12px;
+  border-bottom: 1px solid #2a2d35;
+}
+
+.activityList {
+  min-height: 0;
+}
+
+.activityFilters {
+  margin: 8px 10px 0;
+}
+
+.activityRow {
+  border: 1px solid #2a2d35;
+  border-radius: 8px;
+  padding: 8px;
+  background: #1d212a;
+}
+
+.activityFocus,
+.activitySummary {
+  overflow-wrap: anywhere;
+}
+
+.activitySummary {
+  margin-top: 6px;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 720px) {
+  .main.withActivity {
+    padding-right: 0;
+  }
+
+  .main.withSessions {
+    padding-left: 0;
+  }
+
+  .console {
+    height: calc(100vh - 82px);
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .bubble {
+    width: 100%;
+  }
+
+  .storageGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboardGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .activityPanel.open {
+    width: min(88vw, 320px);
+  }
+
+  .sessionsPanel.open {
+    width: min(88vw, 300px);
+  }
+}
