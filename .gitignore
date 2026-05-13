@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Node (frontend)
+node_modules/
+.vite/
+
+# Test artifacts
+test-results/
+.last-run.json
+*.tsbuildinfo
+
+# Local
+.swarm/
+*.db
+*.db-journal
+.env
+.env.local
