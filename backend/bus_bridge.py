@@ -43,10 +43,11 @@ from __future__ import annotations
 import json
 import os
 import sqlite3
-import stat
 import time
 from pathlib import Path
 from typing import Any
+
+from backend.security.paths import refuse_ancestor_symlink as _shared_refuse_ancestor
 
 
 DEFAULT_LEM_BUS_DB = Path.home() / "projects" / "lem" / ".swarm" / "teammate-bus.db"
@@ -64,29 +65,12 @@ class BusBridgePathError(RuntimeError):
 def _refuse_ancestor_symlink(path: Path, *, role: str) -> None:
     """Walk path.parent → filesystem root, refusing any symlinked link.
 
-    Same shape as ``lem/visual/paths.py::_refuse_ancestor_symlink`` and
-    ``cowork-console/backend/main.py::_refuse_ancestor_symlink``."""
+    cleanup-3-mirror (2026-05-14): delegates to
+    ``backend.security.paths`` canonical helper (cowork-console mirror
+    of ``lem/security/paths.py`` from lem PR #11).
+    ``BusBridgePathError`` preserved as module-typed exception."""
 
-    if path.is_symlink():
-        raise BusBridgePathError(
-            f"bus_bridge refuses to follow symlink for {role}: {path}"
-        )
-    walker = path.parent
-    while True:
-        try:
-            walker_lstat = walker.lstat()
-        except OSError as exc:
-            raise BusBridgePathError(
-                f"bus_bridge ancestor unreachable for {role}: {walker}"
-            ) from exc
-        if stat.S_ISLNK(walker_lstat.st_mode):
-            raise BusBridgePathError(
-                f"bus_bridge refuses to follow ancestor symlink for "
-                f"{role}: {walker}"
-            )
-        if walker.parent == walker:
-            return
-        walker = walker.parent
+    _shared_refuse_ancestor(path, exc_type=BusBridgePathError, role=role)
 
 
 def resolve_bus_db_path() -> Path:
