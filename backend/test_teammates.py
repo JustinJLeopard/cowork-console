@@ -19,7 +19,7 @@ from unittest.mock import patch
 
 from fastapi.testclient import TestClient
 
-from extensions.ui.backend.main import (
+from backend.main import (
     RosterPathError,
     TEAMMATE_REQUIRED_FIELDS,
     TEAMMATE_STATES,
@@ -90,7 +90,7 @@ class TestEnrichedRosterValidation(unittest.TestCase):
             {"id": "broken", "name": "B", "signature_color": "#fff",
              "state": "working", "current_action": "ok"},
         ]
-        with patch("extensions.ui.backend.main._load_roster", return_value=bad_roster):
+        with patch("backend.main._load_roster", return_value=bad_roster):
             out = _enriched_roster()
         self.assertEqual([m["id"] for m in out], ["lem"])
 
@@ -101,7 +101,7 @@ class TestEnrichedRosterValidation(unittest.TestCase):
             {"id": "weird", "name": "W", "role": "x", "signature_color": "#fff",
              "state": "telepathic", "current_action": "ok"},
         ]
-        with patch("extensions.ui.backend.main._load_roster", return_value=bad_roster):
+        with patch("backend.main._load_roster", return_value=bad_roster):
             out = _enriched_roster()
         self.assertEqual([m["id"] for m in out], ["lem"])
 
