@@ -31,8 +31,20 @@ from backend.main import (
 
 class TestTeammatesApi(unittest.TestCase):
     def setUp(self) -> None:
+        # Followup E (2026-05-14): isolate the static-roster unit tests
+        # from any real lem teammate-bus.db that the bus_bridge would
+        # otherwise overlay. Point LEM_BUS_DB at a nonexistent path so
+        # bus_bridge fails closed and the static roster passes through.
+        self._old_lem_bus_db = os.environ.get("LEM_BUS_DB")
+        os.environ["LEM_BUS_DB"] = "/nonexistent/teammate-bus.db"
         self.app = create_app()
         self.client = TestClient(self.app)
+
+    def tearDown(self) -> None:
+        if self._old_lem_bus_db is None:
+            os.environ.pop("LEM_BUS_DB", None)
+        else:
+            os.environ["LEM_BUS_DB"] = self._old_lem_bus_db
 
     def test_get_teammates_returns_canonical_roster(self) -> None:
         response = self.client.get("/api/teammates")
