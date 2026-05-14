@@ -129,8 +129,14 @@ def _enriched_roster(*, now_ts: int | None = None) -> list[dict[str, Any]]:
     """Return the roster with `last_activity_ts` stamped + state/field validation.
 
     Members missing required fields or with an unknown state are dropped
-    fail-closed. The cross-process bus enrichment that promoted teammates
-    to `working` based on recent bus activity is a follow-up.
+    fail-closed.
+
+    Followup E (2026-05-14): when the lem teammate-bus DB is reachable
+    (``LEM_BUS_DB`` env override or default ``~/projects/lem/.swarm/
+    teammate-bus.db``), per-teammate ``last_activity_ts`` /
+    ``current_action`` / promoted-``state`` are overlaid from recent
+    bus activity. Falls back to the static-stamped roster on any bus
+    failure. See ``backend/bus_bridge.py``.
     """
     if now_ts is None:
         now_ts = int(time.time())
@@ -147,6 +153,16 @@ def _enriched_roster(*, now_ts: int | None = None) -> list[dict[str, Any]]:
         member_out = dict(member)
         member_out["last_activity_ts"] = now_ts
         out.append(member_out)
+
+    # Followup E: overlay bus activity on top of the validated baseline.
+    # Imported lazily to avoid hard-failing if bus_bridge has an issue
+    # at module load time.
+    try:
+        from backend.bus_bridge import overlay_roster_with_bus
+        out = overlay_roster_with_bus(out, now_ts=now_ts)
+    except Exception:
+        # Fail-closed: any unexpected bus_bridge error -> static roster.
+        pass
     return out
 
 
